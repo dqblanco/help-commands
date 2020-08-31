@@ -29,3 +29,5 @@ docker exec -ti -w $PWD --user=nombreUsuario nombre_container php $@
 ```
 * Agregar permisos de ejecución: `sudo chmod +x /usr/bin/php`
 * Ejecutar el comando `php -version`
+
+Ir al [inicio](../README.md)
