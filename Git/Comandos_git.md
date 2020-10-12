@@ -126,7 +126,7 @@ a producción y tengamos que regresar a la versión antes de la subida. A contin
 11. Agregar Manifest: `git add .`
 12. Hacer Commit del Manifest: `git commit` 
 13. En el commit se pone Release 01.02.0x. y abajo un comentario
-14. Se suben los cambios en master: `push git push origin master`
+14. Se suben los cambios en master: `git push origin master`
 15. Se revisa el log para copiar la descripción: `git log --name-status`
 16. Se crea la etiqueta: `git tag -a 01.02.0x`
 17. Se sube la etiqueta al repositorio remoto: `git push origin 01.02.0x`
