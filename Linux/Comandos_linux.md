@@ -69,6 +69,13 @@ ServerAliveInterval 30
 ServerAliveCountMax 120
 IdentityFile <Ruta llave privada>
 ```
+## Comprimir archivos
+
+tar -czf backup.tar.gz /{directorio}
+
+## Descomprimir archivos
+
+tar -xzvf backup.tar.gz
 
 
 Ir al [inicio](../README.md)
