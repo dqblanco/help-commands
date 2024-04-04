@@ -7,7 +7,7 @@ Comparto con ustedes algunos comandos utiles que pueden sacarlos de apuros.
 
 - [Cómo ejecutar PHP en ambiente local usando docker](Docker/ejecutar_php_ambiente_local_usando_docker.md).
 - [Docker](Docker/comandos_docker.md).
-  - [Container Php/Symfony/Mysql ](Docker/container_docker_php_nginx_mysql.md).
+  - [Container Php/nginx/Mysql ](Docker/container_docker_php_nginx_mysql.md).
 - [Git](Git/Comandos_git.md).
 - [Linux](Linux/Comandos_linux.md).
 
