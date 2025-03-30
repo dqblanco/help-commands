@@ -42,7 +42,7 @@ services:
     container_name: envphp-mysql
     image: 'mysql:8.0.37'
     volumes:
-      - 'mariadb_data:/var/lib/mysql'
+      - 'mydb_data:/var/lib/mysql'
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_ROOT_USER: root
@@ -67,4 +67,4 @@ networks:
           gateway: 172.20.1.1
 
 volumes:
-  mariadb_data:
+  mydb_data:
