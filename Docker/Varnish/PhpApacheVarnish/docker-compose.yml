@@ -1,0 +1,53 @@
+version: "3.8"
+
+services:
+  workspace:
+    build:
+      context: ./docker/php
+    container_name: workspace
+    volumes:
+      - ./public:/var/www/html
+      - ./docker/php/conf.d/xdebug.ini:/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+      - ./docker/php/conf.d/custom_php.ini:/usr/local/etc/php/conf.d/custom_php.ini
+    env_file:
+      - ./.env
+    user: "${UID}:${GID}"
+    ports:
+      - '9000:9000'
+    environment:
+      XDEBUG_MODE: debug
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    networks:
+      - app_net
+
+  apache:
+    image: httpd:2.4
+    container_name: apache
+    build:
+      context: ./docker/apache
+    depends_on:
+      - workspace
+    volumes:
+      - ./public:/var/www/html
+    ports:
+      - "8080:80"
+    networks:
+      - app_net
+
+  varnish:
+    build:
+      context: ./docker/varnish
+    container_name: varnish
+    depends_on:
+      - apache
+    volumes:
+      - ./docker/varnish/default.vcl:/etc/varnish/default.vcl
+    ports:
+      - "80:80"
+    networks:
+      - app_net
+
+networks:
+  app_net:
+    driver: bridge

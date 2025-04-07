@@ -1,10 +1,10 @@
 
 # Container de Docker de PHP 8, Nginx y Mysql
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
 En ocasiones tenemos la necesidad de tener un ambiente de trabajo de php limpio para iniciar un proyecto nuevo o 
 simplemente para experimentar nuevos comandos. 
 
-Tratare de explicar la instalación del modo más simple posible.
 
 ## ¿Cual será el resultado final?
 Luego de culminar la instalación tendrás:
@@ -26,7 +26,7 @@ Luego de culminar la instalación tendrás:
 ```
 git clone git@github.com:dqblanco/help-commands.git
 ```
-2. Copiar la carpeta el interno de lo que esta en la carpeta `./help-commands/Docker/EnvPHP/` a la carpeta de tu proyecto
+2. Copiar el contenido de la carpeta `./help-commands/Docker/EnvPHP/` a la carpeta de tu proyecto
 
 Ejemplo
 ```
@@ -63,15 +63,5 @@ Para entrar al container
 ```
 docker exec -it envphp-workspace bash
 ```
-
-
-
-
-
-
-
-
-
-
 
 Ir al [inicio](../README.md)
