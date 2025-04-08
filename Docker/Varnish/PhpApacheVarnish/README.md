@@ -49,4 +49,7 @@ docker-compose exec varnish sh
 
 Luego que los container han iniciado correctamente entra a http://phpvarnish.local/
 
+Consultar sin Cache
+http://phpvarnish.local:8080/
+
 Ir al [inicio](../README.md)
