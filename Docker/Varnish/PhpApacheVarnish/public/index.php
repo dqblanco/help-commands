@@ -15,6 +15,6 @@
 <?php include 'body_footer.php'; ?>
 
 
-<script src="js/script.js"></script>
+<script src="<?php echo BASE_URL; ?>js/script.js"></script>
 </body>
 </html>
