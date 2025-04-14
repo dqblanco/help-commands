@@ -133,7 +133,7 @@ curl -I http://phpvarnish.local/error404.php
 **En vcl_backend_response:**
 ```
 sub vcl_backend_response {
-    set beresp.grace = 2m;
+    set beresp.grace = 2m;  
 }
 ```
 Pasos:
@@ -215,4 +215,66 @@ sub vcl_deliver {
 ```
 curl -I http://phpvarnish.local/
 ```
+
+
+# Ejercicio 12 – Activar uso de ESI
+
+Crear un nuevo archivo `bloques/frase-del-día.php`
+```
+<?php
+echo "La frase de hoy es: " . date('H:i:s');
+```
+Incluir en el index el Bloque ESI
+```
+<esi:include src="bloques/frase-del-día.php" ></esi:include>
+```
+Agregar header Surrogate-Control 
+```
+header('Surrogate-Control: content="ESI/1.0"');
+```
+
+Forzar que varnish interprete la ESI
+```
+sub vcl_backend_response {
+  if (beresp.http.Surrogate-Control ~ "ESI/1.0") {
+        set beresp.do_esi = true;
+    }
+}
+```
+
+# Ejercicio 13 – Evitar cachear el fragmento
+**Objetivo:** Mostrar cómo ESI puede cargar un fragmento sin cachear.
+
+Crear un nuevo archivo `bloques/bloque-no-cache.php`
+```
+<?php
+header("Cache-Control: no-store");
+echo "Usuario: invitado-".rand(100,999);
+```
+Incluir en el index el Bloque ESI
+```
+<esi:include src='bloques/bloque-no-cache.php' />
+```
+
+
+# Ejercicio 14 – TTL diferente por fragmento
+**Objetivo:** Cachear cada fragmento con TTL personalizado.
+
+Crear un nuevo archivo `bloques/publicidad.php`
+```
+<?php
+header("Cache-Control: max-age=20");
+echo "Publicidad del minuto: Oferta #".rand(1,100);
+```
+Crear un nuevo archivo `bloques/alerta.php`
+```
+<?php
+header("Cache-Control: max-age=5");
+echo "Alerta nivel ".rand(1,9);
+```
+
+
+
+
+
 

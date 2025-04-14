@@ -16,3 +16,18 @@ ul li:last-child {
 h1{
     color: red;
 }
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px auto;
+}
+td.left {
+    width: 70%;
+}
+table, td {
+    border: 1px solid #000; /* Define un borde negro de 1px a la tabla y celdas */
+}
+
+td {
+    padding: 10px; /* Espacio interno en cada celda */
+}
