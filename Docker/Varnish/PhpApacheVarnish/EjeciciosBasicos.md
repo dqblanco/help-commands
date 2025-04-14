@@ -273,8 +273,18 @@ header("Cache-Control: max-age=5");
 echo "Alerta nivel ".rand(1,9);
 ```
 
+# Ejercicio 15 – Contenido multilenguaje dinámico con ESI
+**Objetivo:** Mostrar contenido de idioma diferente por fragmento ESI.
 
-
-
-
+Crear un nuevo archivo `bloques/lang.php`
+```
+<?php
+$idioma = $_GET['lang'] ?? 'es';
+$frases = ['es' => 'Bienvenido', 'en' => 'Welcome', 'fr' => 'Bienvenue'];
+echo $frases[$idioma];
+```
+Incluir en el index el Bloque ESI
+```
+<esi:include src="/bloques/lang.php?lang=en" />'
+```
 

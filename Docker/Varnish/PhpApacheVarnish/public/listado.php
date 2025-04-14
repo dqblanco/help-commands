@@ -19,10 +19,13 @@ header('Surrogate-Control: content="ESI/1.0"');
             <tr>
                 <td class="left">
                     <h2>Ejercicio 12 </h2>
-                    <esi:include src="bloques/frase-del-día.php" ></esi:include>
+                    <esi:include src="bloques/frase-del-dia.php" ></esi:include>
 
                     <h2>Ejercicio 13 </h2>
                     <esi:include src='bloques/bloque-no-cache.php'/>
+
+                    <h2>Ejercicio 15 </h2>
+                    <esi:include src="bloques/lang.php?lang=es" />
 
 
                 </td>
