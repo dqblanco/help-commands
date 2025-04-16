@@ -1,6 +1,7 @@
 <?php
 include 'header.php';
 header('Surrogate-Control: content="ESI/1.0"');
+header('xkey: listado-inmueble');
 ?>
 
 <!DOCTYPE html>
@@ -38,10 +39,10 @@ header('Surrogate-Control: content="ESI/1.0"');
 
                 </td>
                 <td class="right">
-                    <h2>Ejercicio 14</h2>
-                    <esi:include src="bloques/publicidad.php"/>
-                    <br/>
-                    <esi:include src="bloques/alerta.php"/>
+<!--                    <h2>Ejercicio 14</h2>-->
+<!--                    <esi:include src="bloques/publicidad.php"/>-->
+<!--                    <br/>-->
+<!--                    <esi:include src="bloques/alerta.php"/>-->
                 </td>
             </tr>
         </table>
@@ -49,7 +50,6 @@ header('Surrogate-Control: content="ESI/1.0"');
 
     </section>
 </main>
-<esi:include src="bloques/footer.php"/>
 <?php include 'body_footer.php'; ?>
 
 

@@ -1,6 +1,7 @@
 vcl 4.1;
 import std;
 include "subroutines/app_purge.vcl";
+include "subroutines/app_tags_xkey.vcl";
 
 acl invalidators {
     "localhost";             // loopback
@@ -16,6 +17,8 @@ backend default {
 
 sub vcl_recv {
       call app_purge_recv;
+      call app_tags_xkey_recv;
+
 
       if (req.url ~ "^/(admin|login)") {
             std.log("REMAX: hola");
@@ -39,8 +42,8 @@ sub vcl_recv {
 
 #beresp.ttl = Tiempo en que un contenido puede permanecer en caché
 sub vcl_backend_response {
-
-    set beresp.ttl = 30s;
+    set beresp.grace = 30s;
+    set beresp.ttl = 10s;
     set beresp.http.Cache-Control = "public, max-age=10";
 
      if (bereq.url ~ "\.(css|js)$") {
@@ -56,20 +59,20 @@ sub vcl_backend_response {
             set beresp.http.Cache-Control = "no-store";
     }
 
-    if (bereq.url ~ "/bloques/publicidad.php") {
-        set beresp.http.Cache-Control = "public, max-age=60";
-        set beresp.ttl = 60s;
-    }
+//    if (bereq.url ~ "/bloques/publicidad.php") {
+//        set beresp.http.Cache-Control = "public, max-age=60";
+//        set beresp.ttl = 60s;
+//    }
+//
+//    if (bereq.url ~ "/bloques/alerta.php") {
+//        set beresp.http.Cache-Control = "public, max-age=5";
+//        set beresp.ttl = 5s;
+//    }
 
-    if (bereq.url ~ "/bloques/alerta.php") {
-        set beresp.http.Cache-Control = "public, max-age=5";
-        set beresp.ttl = 5s;
-    }
-
-     if (bereq.url ~ "/bloques/item.php") {
-            set beresp.http.Cache-Control = "public, max-age=20";
-            set beresp.ttl = 20s;
-        }
+     if (bereq.url ~ "^/bloques/") {
+            set beresp.http.Cache-Control = "public, max-age=60";
+            set beresp.ttl = 60s;
+     }
 
     if (beresp.http.Surrogate-Control ~ "ESI/1.0") {
         set beresp.do_esi = true;
