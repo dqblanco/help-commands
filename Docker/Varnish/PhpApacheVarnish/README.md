@@ -52,4 +52,18 @@ Luego que los container han iniciado correctamente entra a http://phpvarnish.loc
 Consultar sin Cache
 http://phpvarnish.local:8080/
 
+# Comandos utiles
+
+## Invalidación
+Desde el workspace: `docker exec -it workspace bash`
+```
+curl -X PURGE -H 'x-purge-token: PURGE_NOW' http://varnish/
+
+```
+
+## Llamar varnish desde host pasando por docker
+```
+docker exec -it varnish varnishlog -g request
+```
+
 Ir al [inicio](../README.md)

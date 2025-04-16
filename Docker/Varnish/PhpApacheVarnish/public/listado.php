@@ -18,14 +18,22 @@ header('Surrogate-Control: content="ESI/1.0"');
             </tr>
             <tr>
                 <td class="left">
-                    <h2>Ejercicio 12 </h2>
-                    <esi:include src="bloques/frase-del-dia.php" ></esi:include>
 
-                    <h2>Ejercicio 13 </h2>
-                    <esi:include src='bloques/bloque-no-cache.php'/>
+                    <esi:include src="bloques/item.php?id=1" />
+                    <esi:include src="bloques/item.php?id=2" />
+                    <esi:include src="bloques/item.php?id=3" />
+                    <esi:include src="bloques/item.php?id=4" />
+                    <esi:include src="bloques/item.php?id=5" />
+                    <esi:include src="bloques/item.php?id=6" />
 
-                    <h2>Ejercicio 15 </h2>
-                    <esi:include src="bloques/lang.php?lang=es" />
+<!--                    <h2>Ejercicio 12 </h2>-->
+<!--                    <esi:include src="bloques/frase-del-dia.php" />-->
+<!---->
+<!--                    <h2>Ejercicio 13 </h2>-->
+<!--                    <esi:include src='bloques/bloque-no-cache.php'/>-->
+<!---->
+<!--                    <h2>Ejercicio 15 </h2>-->
+<!--                    <esi:include src="bloques/lang.php?lang=en" />-->
 
 
                 </td>
@@ -41,10 +49,10 @@ header('Surrogate-Control: content="ESI/1.0"');
 
     </section>
 </main>
-<esi:include src="<?php echo BASE_URL; ?>/bloques/footer.php"/>
+<esi:include src="bloques/footer.php"/>
 <?php include 'body_footer.php'; ?>
 
 
-<script src="<?php echo BASE_URL; ?>js/script.js"></script>
+<script src="js/script.js"></script>
 </body>
 </html>

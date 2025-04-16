@@ -1,4 +1,12 @@
 vcl 4.1;
+import std;
+include "subroutines/app_purge.vcl";
+
+acl invalidators {
+    "localhost";             // loopback
+    "varnish";      // otro contenedor permitido
+    "workspace";
+}
 
 #Conexión al backend
 backend default {
@@ -7,6 +15,23 @@ backend default {
 }
 
 sub vcl_recv {
+      call app_purge_recv;
+
+      if (req.url ~ "^/(admin|login)") {
+            std.log("REMAX: hola");
+             return (pass);
+         }
+
+          if (req.http.User-Agent ~ "(?i)bot|crawl|spider") {
+             return (pass);
+          }
+
+           if (req.http.Cookie ~ "PHPSESSID") {
+                  return (pass);
+              }
+        set req.http.x-esi-level = req.esi_level;
+        set req.http.X-Received = "from vcl_recv";
+
 
 
     return (hash);
@@ -15,7 +40,7 @@ sub vcl_recv {
 #beresp.ttl = Tiempo en que un contenido puede permanecer en caché
 sub vcl_backend_response {
 
-    set beresp.ttl = 2s;
+    set beresp.ttl = 30s;
     set beresp.http.Cache-Control = "public, max-age=10";
 
      if (bereq.url ~ "\.(css|js)$") {
@@ -41,9 +66,17 @@ sub vcl_backend_response {
         set beresp.ttl = 5s;
     }
 
+     if (bereq.url ~ "/bloques/item.php") {
+            set beresp.http.Cache-Control = "public, max-age=20";
+            set beresp.ttl = 20s;
+        }
+
     if (beresp.http.Surrogate-Control ~ "ESI/1.0") {
         set beresp.do_esi = true;
     }
+
+     set beresp.http.X-Url = bereq.url;
+     set beresp.http.X-Host = bereq.http.host;
     #set beresp.do_esi = true;
 
 }

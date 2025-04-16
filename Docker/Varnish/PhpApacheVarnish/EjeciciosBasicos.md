@@ -1,8 +1,8 @@
-# Ejercicios Uso Varnish
+# Ejercicios Uso Varnish Nivel Básico
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
-Ejemplos y ejercicio curso Varnish
+Ejemplos y ejercicio curso Varnish Nivel Básico
 
 # Modificar el TTL solo para imágenes
 
